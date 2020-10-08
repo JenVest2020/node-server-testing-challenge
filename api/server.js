@@ -12,7 +12,7 @@ server.use('/api/events', eventsRouter);
 server.use('/api/guests', guestsRouter);
 
 server.get('/', (req, res) => {
-    res.status(200).json({ api: "Let's Party!" });
+    res.status(200).json({ api: 'Lets Party!' });
 })
 
 
