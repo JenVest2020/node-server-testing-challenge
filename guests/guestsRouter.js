@@ -12,13 +12,28 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const info = req.body;
-    db.addGuest(info)
+    const guest = req.body;
+    db.addGuest(guest)
         .then(info => {
             res.status(201).json(info);
         })
         .catch(err => {
             res.status(500).json({ message: 'error adding new guest to database', error: err });
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    db.removeGuest(id)
+        .then(e => {
+            if (e > 0) {
+                res.status(200).json({ message: 'guest successfully deleted' });
+            } else {
+                res.status(404).json({ message: 'Id not found' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'error deleting guest from database', error: err });
         });
 });
 

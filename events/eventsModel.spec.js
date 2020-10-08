@@ -28,7 +28,7 @@ describe('events model', () => {
 
         it('should remove event from the database', async () => {
             let event = await Events.removeEvent({ id: 2 });
-            expect(event.name).toEqual(undefined);
+            expect(event.id).toEqual(undefined);
         })
     })
 })
