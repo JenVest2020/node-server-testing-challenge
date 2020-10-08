@@ -6,12 +6,13 @@ module.exports = {
     getAllEvents,
 }
 
-function addEvent(event) {
-    return null;
+async function addEvent(event) {
+    const [id] = await db('events').insert(event, 'id');
+    return db('events').where({ id }).first();
 }
 
 function removeEvent(id) {
-    return null;
+    return db('events').where('id', id).del();
 }
 
 function getAllEvents() {
