@@ -6,12 +6,13 @@ module.exports = {
     getAllGuests,
 }
 
-async function addGuest(event) {
-    return null;
+async function addGuest(guest) {
+    const [id] = await db('guests').insert(guest, 'id');
+    return db('guests').where({ id }).first();
 }
 
 function removeGuest(id) {
-    return null;
+    return db('guests').where('id', id).del();
 }
 
 function getAllGuests() {
